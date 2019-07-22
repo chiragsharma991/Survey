@@ -1,0 +1,9 @@
+<resources>
+    <string name="app_name">Survey App</string>
+    <string name="please_wait">Please wait...</string>
+    <string name="cancel">Cancel</string>
+    <string name="home">Home</string>
+    <string name="next">Next</string>
+    <string name="total_completed_survey">Total Completed Survey: %1$s</string>
+    <string name="app_version">App version: %1$s</string>
+</resources>

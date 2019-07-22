@@ -1,0 +1,85 @@
+<?xml version="1.0" encoding="utf-8"?>
+
+
+
+
+    <LinearLayout
+        xmlns:android="http://schemas.android.com/apk/res/android"
+        xmlns:app="http://schemas.android.com/apk/res-auto"
+        xmlns:tools="http://schemas.android.com/tools"
+        android:layout_height="wrap_content"
+        android:orientation="vertical"
+        android:layout_width="match_parent"
+        >
+
+    <RelativeLayout
+        android:id="@+id/toolbarRel_layout"
+        android:layout_width="match_parent"
+        android:layout_height="@dimen/_50sdp"
+        android:layout_marginTop="@dimen/_8sdp"
+        android:gravity="center_vertical">
+
+
+   <!--     <android.support.v7.widget.AppCompatImageView
+            android:id="@+id/search_icon"
+            android:layout_width="@dimen/_45sdp"
+            android:layout_height="@dimen/_40sdp"
+            android:clickable="true"
+            android:focusable="true"
+            android:background="?attr/selectableItemBackgroundBorderless"
+            android:padding="@dimen/_8sdp"
+            android:layout_centerVertical="true"
+            app:srcCompat="@drawable/search"
+            android:visibility="visible"
+            />-->
+
+
+
+        <androidx.appcompat.widget.AppCompatEditText
+            android:id="@+id/search_edt"
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:focusable="true"
+            android:padding="@dimen/_16sdp"
+            android:lines="1"
+
+            android:hint="Select state"
+            android:focusedByDefault="true"
+            android:singleLine="true"
+            android:textAppearance="?android:attr/textAppearanceMedium"
+
+            />
+
+
+
+
+
+
+    </RelativeLayout>
+
+
+<!--
+
+    <android.support.v7.widget.AppCompatEditText
+            android:layout_width="@dimen/_400sdp"
+            android:layout_height="match_parent"
+            android:id="@+id/search_edt"
+            android:drawablePadding="@dimen/_8sdp"
+            android:drawableLeft="@drawable/search"
+            />
+
+-->
+
+        <androidx.recyclerview.widget.RecyclerView
+            android:id="@+id/recyclerview_search"
+            android:layout_width="match_parent"
+
+            android:clipToPadding="false"
+            android:layout_height="wrap_content"/>
+
+
+
+    </LinearLayout>
+
+
+

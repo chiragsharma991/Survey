@@ -1,0 +1,175 @@
+<?xml version="1.0" encoding="utf-8"?>
+<layout
+    xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+
+
+    >
+
+    <data>
+
+        <import type="android.view.View">
+
+        </import>
+
+        <variable
+            name="onclick"
+            type="com.softtech360.totalservey.fragment.Finisher.MyClickHandler" />
+
+
+    </data>
+
+
+    <FrameLayout
+        android:layout_width="match_parent"
+        android:background="@color/white"
+        android:layout_height="match_parent"
+        android:clickable="true"
+        android:fitsSystemWindows="true"
+        android:focusable="true"
+        android:orientation="vertical">
+
+
+        <RelativeLayout
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:background="@color/white"
+            >
+
+
+            <com.google.android.material.appbar.AppBarLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:id="@+id/appbar"
+                >
+                <include layout="@layout/toolbar"
+                    >
+
+                </include>
+
+            </com.google.android.material.appbar.AppBarLayout>
+
+
+            <RelativeLayout
+                android:layout_width="match_parent"
+                android:layout_height="match_parent"
+                >
+
+
+                <androidx.appcompat.widget.AppCompatTextView
+                    android:id="@+id/titlename"
+                    style="@style/TextBorder"
+                    android:layout_width="wrap_content"
+                    android:layout_gravity="center_vertical"
+                    android:singleLine="true"
+                    android:textColor="@color/black"
+                    android:textSize="@dimen/_22sdp"
+                    android:text="Thank You ! "
+                    android:layout_centerInParent="true"
+                    android:layout_marginStart="@dimen/_32sdp"
+                    android:layout_marginLeft="@dimen/_32sdp"
+
+                    />
+                <androidx.appcompat.widget.AppCompatTextView
+                    android:id="@+id/title_desc"
+                    style="@style/TextBorder"
+                    android:layout_width="wrap_content"
+                    android:layout_gravity="center_vertical"
+                    android:singleLine="true"
+                    android:textColor="@color/black_light"
+                    android:textSize="@dimen/_18sdp"
+                    android:layout_marginTop="@dimen/_16sdp"
+                    android:text="Data has been successfully submited"
+                    android:layout_below="@+id/titlename"
+                    android:layout_centerHorizontal="true"
+                    android:layout_marginStart="@dimen/_32sdp"
+                    android:layout_marginLeft="@dimen/_32sdp"
+
+                    />
+
+                <androidx.appcompat.widget.AppCompatImageView
+                    android:layout_width="@dimen/_100sdp"
+                    android:layout_height="@dimen/_100sdp"
+                    android:layout_above="@+id/titlename"
+                    android:layout_centerHorizontal="true"
+                    app:srcCompat="@drawable/verified"
+                    android:layout_marginBottom="@dimen/_40sdp"
+                    />
+
+
+
+                <RelativeLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="@dimen/_60sdp"
+                    android:id="@+id/bottom_view"
+                    android:layout_alignParentBottom="true"
+                    >
+                    <View
+                        android:id="@+id/divider_two"
+                        android:layout_width="match_parent"
+                        android:layout_height="1dp"
+                        android:alpha="0.2"
+                        android:background="@color/divider_color"
+                        />
+
+
+                    <androidx.appcompat.widget.AppCompatButton
+                        android:layout_gravity="end"
+                        style="@style/Button"
+                        android:layout_alignParentRight="true"
+                        android:layout_alignParentEnd="true"
+                        android:text="Start new servey"
+                        android:id="@+id/done_btn"
+                        android:onClick="@{onclick::onNewsurvey}"
+                        android:layout_centerVertical="true"
+                        android:layout_marginTop="@dimen/_8sdp"
+                        android:layout_marginEnd="@dimen/_8sdp"
+                        android:layout_marginRight="@dimen/_8sdp"
+                        />
+
+                    <androidx.appcompat.widget.AppCompatButton
+                        android:id="@+id/cancel"
+                        style="@style/Button"
+                        android:layout_width="wrap_content"
+                        android:backgroundTint="@color/gray"
+                        android:layout_height="wrap_content"
+                        android:onClick="@{onclick::onHome}"
+                        android:text="@string/home"
+                        android:textColor="@color/black"
+                        android:layout_marginTop="@dimen/_8sdp"
+                        android:textAppearance="?android:attr/textAppearanceSmall"
+                        android:layout_centerVertical="true"
+                        android:layout_alignParentStart="true"
+                        android:layout_alignParentLeft="true"
+                        android:layout_marginStart="@dimen/_8sdp"
+                        android:layout_marginLeft="@dimen/_8sdp"
+                        />
+
+
+
+
+
+
+                </RelativeLayout>
+
+
+
+            </RelativeLayout>
+
+
+        </RelativeLayout>
+
+
+
+
+
+
+    </FrameLayout>
+
+
+
+
+
+
+</layout>
+

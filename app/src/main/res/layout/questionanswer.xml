@@ -1,0 +1,215 @@
+<?xml version="1.0" encoding="utf-8"?>
+<layout
+    xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+
+
+    >
+
+    <data>
+
+        <import type="android.view.View">
+
+        </import>
+
+        <variable
+            name="onclick"
+            type="com.softtech360.totalservey.fragment.QuestionAnswer.MyClickHandler" />
+
+
+    </data>
+
+
+    <FrameLayout
+        android:id="@+id/qacontainer"
+        android:layout_width="match_parent"
+        android:background="@color/white"
+        android:layout_height="match_parent"
+        android:clickable="true"
+        android:fitsSystemWindows="true"
+        android:focusable="true"
+        android:orientation="vertical">
+
+
+        <RelativeLayout
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:background="@color/white"
+            >
+
+
+            <com.google.android.material.appbar.AppBarLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:id="@+id/appbar"
+                >
+                <include layout="@layout/toolbar"
+                    >
+
+                </include>
+
+            </com.google.android.material.appbar.AppBarLayout>
+
+
+         <!--   <android.support.v4.widget.NestedScrollView
+                android:layout_width="match_parent"
+                android:layout_height="match_parent"
+                android:layout_above="@+id/bottom_view"
+                android:layout_below="@+id/appbar"
+
+                >
+
+                <LinearLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="match_parent"
+                    android:orientation="vertical"
+                    android:layout_margin="@dimen/_16sdp"
+                    >
+
+
+                         <android.support.v7.widget.AppCompatTextView
+                             android:id="@+id/questiontitle"
+                             style="@style/TextviewLarge"
+                             android:layout_width="wrap_content"
+                             android:padding="@dimen/_16sdp"
+                             android:layout_height="wrap_content"
+                             android:background="@drawable/bluerect_shape"
+                             android:layout_marginTop="@dimen/_8sdp"
+                             android:text="How is the person tell to another person?"
+                             android:textAppearance="?android:attr/textAppearanceMedium"
+                             app:layout_constraintEnd_toEndOf="parent"
+                             app:layout_constraintStart_toStartOf="parent"
+                             app:layout_constraintTop_toTopOf="parent" />
+
+
+
+                    <LinearLayout
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:orientation="vertical"
+                        android:layout_marginStart="@dimen/_16sdp"
+                        android:layout_marginLeft="@dimen/_16sdp"
+                        android:layout_marginEnd="@dimen/_16sdp"
+                        android:layout_marginTop="@dimen/_16sdp"
+                        >
+
+
+                        <android.support.v7.widget.AppCompatRadioButton
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:text="Test One"
+
+                            />
+
+                        <android.support.v7.widget.AppCompatRadioButton
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:layout_marginTop="@dimen/_8sdp"
+                            android:text="Text Two"
+
+                            />
+
+                        <android.support.v7.widget.AppCompatRadioButton
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:layout_marginTop="@dimen/_8sdp"
+                            android:text="Text Three"
+
+                            />
+
+                        <android.support.v7.widget.AppCompatRadioButton
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:layout_marginTop="@dimen/_8sdp"
+                            android:text="Text Four"
+
+                            />
+
+
+
+                    </LinearLayout>
+
+
+
+
+
+                </LinearLayout>
+
+
+
+            </android.support.v4.widget.NestedScrollView>
+
+
+            <RelativeLayout
+                android:layout_width="match_parent"
+                android:layout_height="@dimen/_60sdp"
+                android:id="@+id/bottom_view"
+                android:layout_alignParentBottom="true"
+                >
+                <View
+                    android:id="@+id/divider_two"
+                    android:layout_width="match_parent"
+                    android:layout_height="1dp"
+                    android:alpha="0.2"
+                    android:background="@color/divider_color"
+                    />
+
+
+                <android.support.v7.widget.AppCompatButton
+                    android:layout_gravity="end"
+                    style="@style/Button"
+                    android:layout_alignParentRight="true"
+                    android:layout_alignParentEnd="true"
+                    android:text="@string/next"
+                    android:id="@+id/nxt_btn"
+                    android:onClick="@{onclick::onNext}"
+                    android:layout_centerVertical="true"
+                    android:layout_marginTop="@dimen/_8sdp"
+                    android:layout_marginEnd="@dimen/_8sdp"
+                    android:layout_marginRight="@dimen/_8sdp"
+                    />
+
+
+                <android.support.v7.widget.AppCompatTextView
+                    android:id="@+id/cancel"
+                    style="@style/TextviewLarge"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_marginTop="@dimen/_8sdp"
+                    android:text="@string/cancel"
+                    android:textColor="@color/theme_color"
+                    android:textAppearance="?android:attr/textAppearanceSmall"
+                    app:layout_constraintEnd_toEndOf="parent"
+                    app:layout_constraintStart_toStartOf="parent"
+                    android:layout_toLeftOf="@+id/nxt_btn"
+                    android:layout_toStartOf="@+id/nxt_btn"
+                    android:onClick="@{onclick::onCancel}"
+                    android:layout_centerVertical="true"
+                    app:layout_constraintTop_toTopOf="parent"
+                    android:layout_marginEnd="@dimen/_16sdp"
+                    android:layout_marginRight="@dimen/_16sdp"
+                    />
+
+
+
+
+
+
+            </RelativeLayout>-->
+
+        </RelativeLayout>
+
+
+
+
+
+
+    </FrameLayout>
+
+
+
+
+
+
+</layout>
+

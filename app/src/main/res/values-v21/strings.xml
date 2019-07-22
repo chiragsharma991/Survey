@@ -1,0 +1,9 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <string name="cancel">Cancel</string>
+    <string name="ok">ok</string>
+    <string name="next">Next</string>
+    <string name="error_404">Server not found&#8230; Try after sometime</string>
+    <string name="internet_not_available">Please check your internet connection / for offline you can use last username password</string>
+
+</resources>
