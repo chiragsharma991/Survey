@@ -528,7 +528,7 @@ class SectionWise : RessumeQuestion(), OnBackPressedListener {
 //         TYPE_RADIO = 3
 //         TYPE_CHECK = 4
 //         TYPE_OPTIONAL = 5
-        return true
+        //return true
         error_contmsg = ""
         if (list == null) return false
 
@@ -601,7 +601,7 @@ class SectionWise : RessumeQuestion(), OnBackPressedListener {
 
                     else if (question_id == 61) {
                         if (value.is_values.trim().length <= 0 || value.is_values.trim().toLong() > total_farmland) {
-                            error_contmsg = if(value.is_values.trim().length > 0) error_contmsg+"\n\n- सिंचित क should not be greater to कुल कृषि क्" else ""
+                            error_contmsg = if(value.is_values.trim().length > 0) error_contmsg+"\n\n- सिंचित क्षेत्र should not be greater to कुल कृषि क्षेत्र" else ""
                             return false
                         }
                     }

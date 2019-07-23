@@ -13,7 +13,7 @@ import kotlin.concurrent.thread
 object ConditionalQuestion{
 
 
-    fun conditionalIs(model: SectionWise.SectionWiseModel, questionContainer: LinearLayout, list: ArrayList<SectionWise.SectionWiseModel>, c: Context) {
+    fun <T> conditionalIs(model: SectionWise.SectionWiseModel, questionContainer: LinearLayout, list: ArrayList<SectionWise.SectionWiseModel>, c: Context, sectionwise: T) {
 
 
         thread {
@@ -173,6 +173,21 @@ object ConditionalQuestion{
                                     }
 
                                 }
+                                46 -> {
+                                    // radio button
+                                    c.runOnUiThread {
+                                        if (result.answer[0].is_selected) {
+                                            // yes
+                                            questionContainer.visibility = View.VISIBLE
+                                            model.view_hide_is=false
+                                        } else {
+                                            // no
+                                            questionContainer.visibility = View.GONE
+                                            model.view_hide_is=true
+                                        }
+                                    }
+
+                                }
 
 
                                 48 -> {
@@ -250,10 +265,13 @@ object ConditionalQuestion{
                                 74 -> {
                                     // radio button
                                     c.runOnUiThread {
+
+
                                         if (result.answer[0].is_selected) {
                                             // yes
                                             questionContainer.visibility = View.VISIBLE
                                             model.view_hide_is=false
+
 
                                         } else {
                                             // no
@@ -261,11 +279,13 @@ object ConditionalQuestion{
                                             model.view_hide_is=true
 
                                         }
+
                                     }
 
                                 }
                                 75 -> {
                                     // radio button
+
                                     c.runOnUiThread {
                                         if (result.answer[0].is_selected) {
                                             // yes
@@ -283,6 +303,7 @@ object ConditionalQuestion{
                                 }
                                 76 -> {
                                     // radio button
+
                                     c.runOnUiThread {
                                         if (result.answer[0].is_selected) {
                                             // yes

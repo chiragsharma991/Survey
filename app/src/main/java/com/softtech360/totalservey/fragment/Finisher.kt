@@ -185,13 +185,52 @@ class Finisher : BaseFragment(), OnBackPressedListener {
 
             // add pwd survey.
 
-            val pwdList = databaseclient!!.pwddao().getQuestionUsingFormId(form_id = PreferenceUtil.getInt(PreferenceUtil.FORM_ID,0))
+            getPwd_sectionwise(jsonArray,1)
+
+
+            loge(TAG,"list are -- "+jsonArray.toString())
+
+
+
+            // pass the all data into status table:
+
+            databaseclient!!.statusdao().updateStatus(form_id = PreferenceUtil.getInt(PreferenceUtil.FORM_ID,0),question_answer = Gson().toJson(jsonArray),is_form_submited = true)
+
+
+            // delete entry form wise if data is saved in status table.
+            databaseclient!!.pwddao().deleteFormbyId(form_id = PreferenceUtil.getInt(PreferenceUtil.FORM_ID, 0))
+            // delete Answer form
+            databaseclient!!.answerdao().deleteFormbyId(form_id = PreferenceUtil.getInt(PreferenceUtil.FORM_ID, 0))
+
+            context!!.runOnUiThread {
+
+             //   val servey_count = PreferenceUtil.getString(PreferenceUtil.SURVEY_COUNT,"0")
+             //   PreferenceUtil.putValue(PreferenceUtil.SURVEY_COUNT,(servey_count!!.toInt() + 1).toString())
+               // PreferenceUtil.save()
+
+         /*       Toast.makeText(context,"Thank you! data has been successfully submited",Toast.LENGTH_SHORT).show()
+                val intent = Intent()
+                activity!!.setResult(Activity.RESULT_OK, intent)
+                activity!!.finish()*/
+
+            }
+
+        }
+
+
+    }
+
+
+    private fun  getPwd_sectionwise (jsonarray : JsonArray,disable_usercount : Int)   {
+
+        val pwdList = databaseclient!!.pwddao().getQuestionUserwise(form_id = PreferenceUtil.getInt(PreferenceUtil.FORM_ID,0),user_type = disable_usercount)
+
+        if(pwdList.size > 0){
 
             for (j in 0.until(pwdList.size)){
 
+
                 val jsonObject = JsonObject()
-
-
 
                 val type = object : TypeToken<ArrayList<Answers>>() {}.type
                 val answer : ArrayList<Answers>  = Gson().fromJson(pwdList[j].answer, type)
@@ -233,59 +272,29 @@ class Finisher : BaseFragment(), OnBackPressedListener {
                 }
 
                 else {
+
                     //TYPE_RADIO || TYPE_CHECK
                     jsonObject.addProperty("section_id",pwdList[j].section_id)
                     jsonObject.addProperty("question_id",pwdList[j].question_id)
                     val answer_id_list = ArrayList<Int>()
                     for(value in answer){
                         if(value.is_selected)
-                        answer_id_list.add(value.answer_id)
+                            answer_id_list.add(value.answer_id)
                     }
-
-
                     jsonObject.addProperty("answer_id",TextUtils.join(",", answer_id_list))
                     jsonObject.addProperty("answer",if(pwdList[j].question_type == 3)"" else "0")
 
                 }
 
-                jsonArray.add(jsonObject)
+                jsonarray.add(jsonObject)
 
             }
 
-            loge(TAG,"list are -- "+jsonArray.toString())
-
-
-
-            // pass the all data into status table:
-
-            databaseclient!!.statusdao().updateStatus(form_id = PreferenceUtil.getInt(PreferenceUtil.FORM_ID,0),question_answer = Gson().toJson(jsonArray),is_form_submited = true)
-
-
-            // delete entry form wise if data is saved in status table.
-            databaseclient!!.pwddao().deleteFormbyId(form_id = PreferenceUtil.getInt(PreferenceUtil.FORM_ID, 0))
-            // delete Answer form
-            databaseclient!!.answerdao().deleteFormbyId(form_id = PreferenceUtil.getInt(PreferenceUtil.FORM_ID, 0))
-
-            context!!.runOnUiThread {
-
-             //   val servey_count = PreferenceUtil.getString(PreferenceUtil.SURVEY_COUNT,"0")
-             //   PreferenceUtil.putValue(PreferenceUtil.SURVEY_COUNT,(servey_count!!.toInt() + 1).toString())
-               // PreferenceUtil.save()
-
-         /*       Toast.makeText(context,"Thank you! data has been successfully submited",Toast.LENGTH_SHORT).show()
-                val intent = Intent()
-                activity!!.setResult(Activity.RESULT_OK, intent)
-                activity!!.finish()*/
-
-            }
+            getPwd_sectionwise(jsonarray,disable_usercount + 1)
 
         }
 
-
     }
-
-
-
 
 
 

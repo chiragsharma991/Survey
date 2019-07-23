@@ -113,7 +113,7 @@ class StatusParentAdapter<T>(val c: Context, val list: ArrayList<SectionWise.Sec
             holder.binding.recyclerViewParent.adapter = mAdapter
 
 
-            ConditionalQuestion.conditionalIs(list[position],holder.binding.questionContainer,list,c)
+            ConditionalQuestion.conditionalIs(list[position],holder.binding.questionContainer,list,c,sectionwise)
 
 
 
@@ -144,7 +144,7 @@ class StatusParentAdapter<T>(val c: Context, val list: ArrayList<SectionWise.Sec
 
             holder.binding.recyclerViewParent.adapter = mAdapter
 
-            ConditionalQuestion.conditionalIs(list[position],holder.binding.questionContainer,list,c)
+            ConditionalQuestion.conditionalIs(list[position],holder.binding.questionContainer,list,c,sectionwise)
 
 
         } else if (holder is RadioViewHolder) {
@@ -172,7 +172,7 @@ class StatusParentAdapter<T>(val c: Context, val list: ArrayList<SectionWise.Sec
 
             holder.binding.recyclerViewParent.adapter = mAdapter
 
-            ConditionalQuestion.conditionalIs(list[position],holder.binding.questionContainer,list,c)
+            ConditionalQuestion.conditionalIs(list[position],holder.binding.questionContainer,list,c,sectionwise)
 
 
 
@@ -203,7 +203,7 @@ class StatusParentAdapter<T>(val c: Context, val list: ArrayList<SectionWise.Sec
 
             holder.binding.recyclerViewParent.adapter = mAdapter
 
-            ConditionalQuestion.conditionalIs(list[position],holder.binding.questionContainer,list,c)
+            ConditionalQuestion.conditionalIs(list[position],holder.binding.questionContainer,list,c,sectionwise)
 
 
         } else if (holder is OptionalViewHolder) {
@@ -232,7 +232,7 @@ class StatusParentAdapter<T>(val c: Context, val list: ArrayList<SectionWise.Sec
 
             holder.binding.recyclerViewParent.adapter = mAdapter
 
-            ConditionalQuestion.conditionalIs(list[position],holder.binding.questionContainer,list,c)
+            ConditionalQuestion.conditionalIs(list[position],holder.binding.questionContainer,list,c,sectionwise)
 
 
         }

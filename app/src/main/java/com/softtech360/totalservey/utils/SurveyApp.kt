@@ -9,6 +9,9 @@ class SurveyApp  : Application() {
 
         PreferenceUtil.init(this)
 
+   //     registerActivityLifecycleCallbacks(AppLifecycleHandler.getInstance());
+
+
     }
 
 

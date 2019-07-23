@@ -200,7 +200,7 @@ class SubSectionWise : BaseFragment(), OnBackPressedListener {
 //         TYPE_RADIO = 3
 //         TYPE_CHECK = 4
 //         TYPE_OPTIONAL = 5
-        return  true
+      //  return  true
         error_contmsg = ""
 
         if (list == null) return false
@@ -268,10 +268,10 @@ class SubSectionWise : BaseFragment(), OnBackPressedListener {
                             return true
                         } else {
 
-                            if (value.is_values.trim().length == 16) {
+                            if (value.is_values.trim().length == 12) {
                                 return true
                             } else {
-                                error_contmsg = error_contmsg + "\n\n- आधार नंबर should be 16 digit"
+                                error_contmsg = error_contmsg + "\n\n- आधार नंबर should be 12 digit"
                                 return false
                             }
 
@@ -386,7 +386,7 @@ class SubSectionWise : BaseFragment(), OnBackPressedListener {
                             if (value.is_values.trim().length == 10) {
                                 return true
                             } else {
-                                error_contmsg = error_contmsg + "\n\n- व्हाट्सएप न should be 10 digit"
+                              //  error_contmsg = error_contmsg + "\n\n- व्हाट्सएप न should be 10 digit"
                                 return false
                             }
 

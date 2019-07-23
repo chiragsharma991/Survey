@@ -18,6 +18,9 @@ interface PwdDao {
     @Query("SELECT * FROM Pwd WHERE user_type IN(:user_type)")
     fun getQuestionFromSection(user_type: Int): List<Pwd>
 
+    @Query("SELECT * FROM Pwd WHERE user_type LIKE :user_type AND form_id LIKE :form_id ")
+    fun getQuestionUserwise(user_type: Int, form_id : Int): List<Pwd>
+
     @Query("SELECT * FROM Pwd WHERE user_type LIKE :user_type AND form_id LIKE :form_id AND section_id LIKE :section_id")
     fun getQuestionbyFormId(user_type: Int , form_id : Int,section_id : Int): List<Pwd>
 
@@ -32,7 +35,6 @@ interface PwdDao {
 
     @Query("UPDATE Pwd SET answer = :answer, is_saved = :is_saved WHERE form_id LIKE :form_id AND user_type LIKE :user_type AND question_id LIKE :question_id")
     fun update(form_id: Int , user_type : Int, question_id : Int , answer : String, is_saved :Boolean)
-
 
     @Query("SELECT section_id FROM Pwd WHERE form_id LIKE :form_id AND p_section_id LIKE :p_section_id ORDER BY section_id DESC LIMIT 1")
     fun getlastSectionid(form_id: Int , p_section_id : Int) : Int

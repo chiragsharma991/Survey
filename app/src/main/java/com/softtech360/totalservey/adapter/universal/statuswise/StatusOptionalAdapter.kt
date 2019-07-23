@@ -68,9 +68,11 @@ class StatusOptionalAdapter <T> (val c: Context, val list: ArrayList<SectionWise
 
                 answerlist!![position].is_selected=true
 
+
                 when (sectionwise) {
                     is SectionWise -> {
                         sectionwise.mAdapter.notifyDataSetChanged()
+
                     }
                     is SubSectionWise -> {
 

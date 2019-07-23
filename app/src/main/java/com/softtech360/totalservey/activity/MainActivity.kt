@@ -158,6 +158,22 @@ class MainActivity : BaseActivity(), AnkoLogger, PopupMenu.OnMenuItemClickListen
     private fun syncAllRecords(start_form_id : Int) {
 
 
+        if(!isInternetAvailable()){
+
+            // No internet connection:
+            clearProgressDialog()
+            DialogUtils.openDialog(this@MainActivity, "Please check your internet connection and try again", "",
+                    getString(R.string.ok), "", ContextCompat.getColor(this@MainActivity, R.color.black), object : DialogUtils.OnDialogClickListener {
+                override fun onPositiveButtonClick(p: Int) {
+                }
+
+                override fun onNegativeButtonClick() {
+                }
+            })
+
+           return
+        }
+
 
         thread {
             loge(TAG,"syncAllRecords --")
@@ -864,6 +880,7 @@ class MainActivity : BaseActivity(), AnkoLogger, PopupMenu.OnMenuItemClickListen
         fun onSync(view: View) {
 
             if(mainactivity.syncing_btn.alpha == 0.2f){ return }
+
             mainactivity.showProgressDialog()
             mainactivity.syncAllRecords(1)
         }
