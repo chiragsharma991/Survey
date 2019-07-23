@@ -31,7 +31,7 @@ object ConditionalQuestion{
                             when (model.question_id) {
 
                                 14 -> {
-                                    // radio button
+                                    // radio button //
                                     c.runOnUiThread {
                                         if (result.answer[0].is_selected) {
                                             // father- mother is selected so
