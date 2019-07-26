@@ -10,7 +10,9 @@ import com.softtech360.totalservey.databinding.HostactivityBinding
 import com.softtech360.totalservey.fragment.QuestionAnswer
 import com.softtech360.totalservey.utils.OnBackPressedListener
 import androidx.navigation.NavController
-
+import com.google.gson.Gson
+import com.google.gson.reflect.TypeToken
+import com.softtech360.totalservey.utils.PreferenceUtil
 
 
 class HostActivity : BaseActivity(){
@@ -21,8 +23,9 @@ class HostActivity : BaseActivity(){
         val TAG = "HostActivity"
         var questionIsResume : Boolean = false
         var any_toilet : Boolean = false
+        var oneMore_notify : Boolean = false
         var statusofstudy : Int = -1
-        var statusofAge : HashMap<Int,Int> = HashMap()
+        var statusofAge : HashMap<Int,Int>? = HashMap()
         var pwdName : HashMap<Int,String> = HashMap()
         val conditionalQuestion = ArrayList<ConditionalModel>()
         fun newInstance(): HostActivity {
@@ -43,6 +46,14 @@ class HostActivity : BaseActivity(){
         if (savedInstanceState == null) {
             logd(QuestionAnswer.TAG, "saveInstance Not NULL")
             questionIsResume=intent.getBooleanExtra("RESUME",false)
+            oneMore_notify = false
+
+            if(PreferenceUtil.getString(PreferenceUtil.STATUSOFAGE,"")!!.trim().length > 0){
+                val type = object : TypeToken<HashMap<Int,Int>>() {}.type
+                val statusofage: HashMap<Int,Int> = Gson().fromJson(PreferenceUtil.getString(PreferenceUtil.STATUSOFAGE,""), type)
+                statusofAge=statusofage
+                loge(TAG,"statusofAge length--"+statusofAge!!.size)
+            }
 
 
             conditionalQuestion.add(ConditionalModel(question_id=14,section_id =0,conditional_target=ConditionalTargetModel(target_question_id =13 ,target_section_id=2)))
@@ -54,16 +65,19 @@ class HostActivity : BaseActivity(){
             conditionalQuestion.add(ConditionalModel(question_id=35,section_id =0,conditional_target=ConditionalTargetModel(target_question_id =32 ,target_section_id=3)))
             conditionalQuestion.add(ConditionalModel(question_id=33,section_id =0,conditional_target=ConditionalTargetModel(target_question_id =32 ,target_section_id=3)))
             conditionalQuestion.add(ConditionalModel(question_id=40,section_id =0,conditional_target=ConditionalTargetModel(target_question_id =20 ,target_section_id=2)))
-            conditionalQuestion.add(ConditionalModel(question_id=44,section_id =0,conditional_target=ConditionalTargetModel(target_question_id =43 ,target_section_id=4)))
 
-            conditionalQuestion.add(ConditionalModel(question_id=46,section_id =0,conditional_target=ConditionalTargetModel(target_question_id =45 ,target_section_id=4)))
-            conditionalQuestion.add(ConditionalModel(question_id=48,section_id =0,conditional_target=ConditionalTargetModel(target_question_id =47 ,target_section_id=4)))
-            conditionalQuestion.add(ConditionalModel(question_id=49,section_id =0,conditional_target=ConditionalTargetModel(target_question_id =47 ,target_section_id=4)))
-            conditionalQuestion.add(ConditionalModel(question_id=50,section_id =0,conditional_target=ConditionalTargetModel(target_question_id =47 ,target_section_id=4)))
+            conditionalQuestion.add(ConditionalModel(question_id=44,section_id =0,conditional_target=ConditionalTargetModel(target_question_id =43 ,target_section_id=4)))
+            conditionalQuestion.add(ConditionalModel(question_id=47,section_id =0,conditional_target=ConditionalTargetModel(target_question_id =46 ,target_section_id=4)))
+            conditionalQuestion.add(ConditionalModel(question_id=49,section_id =0,conditional_target=ConditionalTargetModel(target_question_id =48 ,target_section_id=4)))
+            conditionalQuestion.add(ConditionalModel(question_id=50,section_id =0,conditional_target=ConditionalTargetModel(target_question_id =48 ,target_section_id=4)))
+            conditionalQuestion.add(ConditionalModel(question_id=72,section_id =0,conditional_target=ConditionalTargetModel(target_question_id =48 ,target_section_id=4)))
+
             conditionalQuestion.add(ConditionalModel(question_id=59,section_id =0,conditional_target=ConditionalTargetModel(target_question_id =58 ,target_section_id=7)))
             conditionalQuestion.add(ConditionalModel(question_id=74,section_id =0,conditional_target=ConditionalTargetModel(target_question_id =73 ,target_section_id=7)))
             conditionalQuestion.add(ConditionalModel(question_id=75,section_id =0,conditional_target=ConditionalTargetModel(target_question_id =73 ,target_section_id=7)))
             conditionalQuestion.add(ConditionalModel(question_id=76,section_id =0,conditional_target=ConditionalTargetModel(target_question_id =73 ,target_section_id=7)))
+
+           // conditionalQuestion.add(ConditionalModel(question_id=57,section_id =0,conditional_target=ConditionalTargetModel(target_question_id =56 ,target_section_id=6)))
 
 
         }else{
@@ -72,6 +86,7 @@ class HostActivity : BaseActivity(){
         }
 
     }
+
 
 
 

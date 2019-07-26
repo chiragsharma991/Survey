@@ -177,8 +177,8 @@ abstract class RessumeQuestion : BaseFragment() {
                             if(connectedHeader.length > 0){
                                 // if you did not enter pwd name then not go next
 
-                                if(sectionId == 1){
-                                    loge("tag","if adddisableuser---")
+                                if(sectionId == 1 && (user_type + 1) == 1){
+                                    loge("tag","if adddisableuser---sectionId == 1 "+user_type)
 
                                     // add disable screen if you resume
                                     val adddisableuser= AddDisableUser.newInstance(0, 1)
@@ -208,7 +208,9 @@ abstract class RessumeQuestion : BaseFragment() {
 
                             }else{
 
-                                if(sectionId == 1){
+                                if(sectionId == 1 && (user_type + 1) == 1){
+                                    loge("tag","else adddisableuser---sectionId == 1 "+user_type)
+
                                     // add disable screen if you resume
                                     val adddisableuser= AddDisableUser.newInstance(0, 1)
                                     addFragment(R.id.seccontainer, adddisableuser, AddDisableUser.TAG, false)
@@ -269,8 +271,9 @@ abstract class RessumeQuestion : BaseFragment() {
 
                                 if(connectedHeader.length > 0){
                                     // if you did not enter pwd name then not go next
-                                    if(sectionId == 1){
-                                        loge("tag","else sectionId ---")
+                                    if(sectionId == 1 && (user_type + 1) == 1 ){
+                                        loge("tag","IF No adddisableuser---sectionId == 1 "+user_type)
+
 
                                         // add disable screen if you resume
                                         val adddisableuser= AddDisableUser.newInstance(0, 1)
@@ -296,7 +299,9 @@ abstract class RessumeQuestion : BaseFragment() {
                                 }
                                 else{
 
-                                    if(sectionId == 1){
+                                    if(sectionId == 1 && (user_type + 1) == 1 ){
+                                        loge("tag","else No adddisableuser---sectionId == 1 "+user_type)
+
                                         // add disable screen if you resume
                                         val adddisableuser= AddDisableUser.newInstance(0, 1)
                                         addFragment(R.id.seccontainer, adddisableuser, AddDisableUser.TAG, false)
@@ -354,7 +359,7 @@ abstract class RessumeQuestion : BaseFragment() {
 
         if(sectionId < totalsection ){
 
-            if(sectionId == 3 && HostActivity.statusofAge[user_type]!! <= 14){
+            if(sectionId == 3 && HostActivity.statusofAge!![user_type]!! <= 14){
 
                 makeSubEditQuestion(user_type - 1 ,databaseclient,sectionId + 1 , p_section_id)
 

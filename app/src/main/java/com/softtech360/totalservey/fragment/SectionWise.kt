@@ -484,7 +484,7 @@ class SectionWise : RessumeQuestion(), OnBackPressedListener {
 
     private fun refresh() {
 
-        mAdapter = StatusParentAdapter(context!!, list!!, this, 0, "")
+        mAdapter = StatusParentAdapter(context!!, list!!, this@SectionWise, 0, "")
         recyclerview_section.layoutManager = LinearLayoutManager(getActivityBase())
         (recyclerview_section.getItemAnimator() as SimpleItemAnimator).setSupportsChangeAnimations(false)
         recyclerview_section.adapter = mAdapter
@@ -528,7 +528,7 @@ class SectionWise : RessumeQuestion(), OnBackPressedListener {
 //         TYPE_RADIO = 3
 //         TYPE_CHECK = 4
 //         TYPE_OPTIONAL = 5
-        //return true
+      //  return true
         error_contmsg = ""
         if (list == null) return false
 

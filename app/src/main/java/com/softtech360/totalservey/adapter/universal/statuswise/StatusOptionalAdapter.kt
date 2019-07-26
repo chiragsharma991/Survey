@@ -75,7 +75,6 @@ class StatusOptionalAdapter <T> (val c: Context, val list: ArrayList<SectionWise
 
                     }
                     is SubSectionWise -> {
-
                         sectionwise.mAdapter.notifyDataSetChanged()
 
                     }

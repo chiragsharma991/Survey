@@ -1,7 +1,12 @@
 package com.softtech360.totalservey.activity
 
 import android.app.Activity
+import android.app.AlarmManager
+import android.app.PendingIntent
+import android.content.BroadcastReceiver
+import android.content.Context
 import android.content.Intent
+import android.content.IntentFilter
 import android.content.pm.PackageManager
 import androidx.databinding.DataBindingUtil
 import android.os.Bundle
@@ -40,14 +45,20 @@ import android.provider.Settings
 import androidx.appcompat.widget.PopupMenu
 import android.view.MenuItem
 import android.widget.Toast
+import androidx.localbroadcastmanager.content.LocalBroadcastManager
 import com.crashlytics.android.Crashlytics
 import com.softtech360.totalservey.model.Data
+import com.softtech360.totalservey.utils.Constants
+import com.softtech360.totalservey.utils.MyAlarm
 import kotlinx.android.synthetic.main.toolbar.*
 import java.text.SimpleDateFormat
 import java.util.*
 
 
 class MainActivity : BaseActivity(), AnkoLogger, PopupMenu.OnMenuItemClickListener {
+
+
+    private lateinit var mYourBroadcastReceiver: BroadcastReceiver
 
 
     companion object {
@@ -76,7 +87,6 @@ class MainActivity : BaseActivity(), AnkoLogger, PopupMenu.OnMenuItemClickListen
     private fun initView(savedInstanceState: Bundle?) {
 
         if (savedInstanceState == null) {
-
 
             loge(MainActivity.TAG, "saveInstance Not NULL")
             more.visibility = View.VISIBLE
@@ -124,8 +134,26 @@ class MainActivity : BaseActivity(), AnkoLogger, PopupMenu.OnMenuItemClickListen
                 refreshlist()
             }
 
+/*
+            if (!::mYourBroadcastReceiver.isInitialized) {
 
-        } else {
+                mYourBroadcastReceiver = object : BroadcastReceiver(){
+                    override fun onReceive(p0: Context?, p1: Intent?) {
+
+
+                    }
+
+                }
+
+                LocalBroadcastManager.getInstance(this).registerReceiver(mYourBroadcastReceiver, IntentFilter(Constants.BROADCAST_TIMEOUT))
+
+            }
+*/
+
+
+
+
+            } else {
 
             logd(MainActivity.TAG, "saveInstance Not NULL")
 
@@ -337,6 +365,7 @@ class MainActivity : BaseActivity(), AnkoLogger, PopupMenu.OnMenuItemClickListen
     }
 
 
+
     private fun logOut() {
 
         DialogUtils.openDialog(context = this@MainActivity, btnNegative = "No", btnPositive = "Yes", color = ContextCompat.getColor(this@MainActivity, R.color.theme_color), msg = "You are going to logout", title = "", onDialogClickListener = object : DialogUtils.OnDialogClickListener {
@@ -466,6 +495,7 @@ class MainActivity : BaseActivity(), AnkoLogger, PopupMenu.OnMenuItemClickListen
 
 
     private fun onstartNewservey() {
+
 
 
         if(PreferenceUtil.getBoolean(PreferenceUtil.UPDATE_VERSION_CODE,false)){
@@ -888,9 +918,28 @@ class MainActivity : BaseActivity(), AnkoLogger, PopupMenu.OnMenuItemClickListen
 
     }
 
+
+    override fun onStop() {
+        super.onStop()
+        loge(TAG,"onStop--")
+    }
+
+    override fun onResume() {
+        super.onResume()
+        loge(TAG,"onResume--")
+    }
+
+    override fun onRestart() {
+        super.onRestart()
+        loge(TAG,"onRestart--")
+    }
+
     override fun onDestroy() {
-        removeLocationListner()
         super.onDestroy()
+        loge(TAG,"onDestroy--")
+        removeLocationListner()
+
+
     }
 
 

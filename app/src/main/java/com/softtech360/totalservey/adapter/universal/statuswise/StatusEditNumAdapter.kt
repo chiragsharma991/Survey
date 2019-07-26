@@ -1,6 +1,7 @@
 package com.softtech360.totalservey.adapter.universal.statuswise
 
 import android.content.Context
+import android.os.Build
 import androidx.databinding.DataBindingUtil
 import androidx.fragment.app.FragmentActivity
 import androidx.core.content.ContextCompat.getSystemService
@@ -20,7 +21,9 @@ import java.util.ArrayList
 import androidx.recyclerview.widget.LinearLayoutManager
 import android.view.WindowManager
 import android.view.inputmethod.InputMethodManager
+import com.google.gson.Gson
 import com.softtech360.totalservey.fragment.SubSectionWise
+import com.softtech360.totalservey.utils.PreferenceUtil
 import kotlinx.android.synthetic.main.sectionwise.*
 import kotlinx.android.synthetic.main.subsectionwise.*
 
@@ -58,33 +61,30 @@ class StatusEditNumAdapter <T> (val c: Context, val list: ArrayList<SectionWise.
             holder.binding.edttxt.setText(answerlist!![position].is_values)
 
 
+            val inputMethodManager_ = c.getSystemService(Context.INPUT_METHOD_SERVICE) as InputMethodManager
+            inputMethodManager_.hideSoftInputFromWindow(holder.binding.edttxt.windowToken,0)
+
+
+            holder.binding.edttxt.setFocusableInTouchMode(false)
+
+
+
             holder.binding.edttxt.setOnClickListener(View.OnClickListener {
 
-                var layoutManager : RecyclerView.LayoutManager? = null
-                var currentActivity : FragmentActivity? = null
+           /*     if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.LOLLIPOP) {
+                    holder.binding.edttxt.showSoftInputOnFocus = true
+                }*/
 
-                when (sectionwise) {
-                    is SectionWise -> {
-                       layoutManager = sectionwise.recyclerview_section.getLayoutManager() as LinearLayoutManager
-                        currentActivity = (sectionwise as SectionWise).activity!!
-                    }
-                    is SubSectionWise -> {
-                        layoutManager = sectionwise.recyclerview_subsection.getLayoutManager() as LinearLayoutManager
-                        currentActivity = (sectionwise as SubSectionWise).activity!!
 
-                    }
-                }
-
-                // you may want to play with the offset parameter
-              //  layoutManager!!.scrollToPosition(position)
                 holder.binding.edttxt.setFocusableInTouchMode(true)
-                holder.binding.edttxt.post({
-                    holder.binding.edttxt.requestFocus()
-                    //Show soft-keyboard:
-                     currentActivity!!.getWindow().setSoftInputMode(WindowManager.LayoutParams.SOFT_INPUT_STATE_ALWAYS_VISIBLE)
-                    //hide keyboard :
-                    //currentActivity.getWindow().setSoftInputMode(WindowManager.LayoutParams.SOFT_INPUT_STATE_ALWAYS_HIDDEN);
-                })
+
+                holder.binding.edttxt.requestFocus()
+
+
+                val inputMethodManager = c.getSystemService(Context.INPUT_METHOD_SERVICE) as InputMethodManager
+                inputMethodManager.showSoftInput(holder.binding.edttxt, InputMethodManager.SHOW_IMPLICIT)
+
+
             })
 
 
@@ -133,7 +133,14 @@ class StatusEditNumAdapter <T> (val c: Context, val list: ArrayList<SectionWise.
 
 
             if(question_id == 16){
-                HostActivity.statusofAge.put(user_type,if(answerlist[position].is_values.trim().length > 0)answerlist[position].is_values.trim().toInt() else 0)
+
+                HostActivity.statusofAge!!.put(user_type,if(answerlist[position].is_values.trim().length > 0)answerlist[position].is_values.trim().toInt() else 0)
+
+                PreferenceUtil.putValue(PreferenceUtil.STATUSOFAGE,Gson().toJson(HostActivity.statusofAge))
+                PreferenceUtil.save()
+
+
+
             }
 
         }
@@ -142,12 +149,15 @@ class StatusEditNumAdapter <T> (val c: Context, val list: ArrayList<SectionWise.
             // no op
 
             }
+
         }
 
 
     private class MyCustomFocuslistner <T> (val question_id : Int,val sectionwise: T) : View.OnFocusChangeListener{
 
         override fun onFocusChange(v: View?, hasFocus: Boolean) {
+
+            Log.e("tag","onFocusChange---"+hasFocus)
 
 
             var currentActivity : FragmentActivity? = null
@@ -169,12 +179,14 @@ class StatusEditNumAdapter <T> (val c: Context, val list: ArrayList<SectionWise.
             try {
 
                 if (!hasFocus) {
+                    Log.e("tag","!hasFocus---")
+
                     val position = v!!.getTag() as Int
                     val edit = v as AppCompatEditText
                     edit.isFocusableInTouchMode =false
                     edit.post {
                         //hide keyboard :
-                        currentActivity!!.getWindow().setSoftInputMode(WindowManager.LayoutParams.SOFT_INPUT_STATE_ALWAYS_HIDDEN);
+                      //  currentActivity!!.getWindow().setSoftInputMode(WindowManager.LayoutParams.SOFT_INPUT_STATE_ALWAYS_HIDDEN);
                     }
 
                 } else {

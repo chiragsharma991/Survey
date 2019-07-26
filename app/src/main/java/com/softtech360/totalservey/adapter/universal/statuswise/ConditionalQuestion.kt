@@ -6,8 +6,10 @@ import android.view.View
 import android.widget.LinearLayout
 import com.softtech360.totalservey.activity.HostActivity
 import com.softtech360.totalservey.fragment.SectionWise
+import com.softtech360.totalservey.fragment.SubSectionWise
 import org.jetbrains.anko.runOnUiThread
 import java.util.ArrayList
+import java.util.logging.Handler
 import kotlin.concurrent.thread
 
 object ConditionalQuestion{
@@ -173,7 +175,7 @@ object ConditionalQuestion{
                                     }
 
                                 }
-                                46 -> {
+                                47 -> {
                                     // radio button
                                     c.runOnUiThread {
                                         if (result.answer[0].is_selected) {
@@ -189,24 +191,6 @@ object ConditionalQuestion{
 
                                 }
 
-
-                                48 -> {
-                                    // radio button
-                                    c.runOnUiThread {
-                                        if (result.answer[0].is_selected) {
-                                            // yes
-                                            questionContainer.visibility = View.VISIBLE
-                                            model.view_hide_is=false
-
-                                        } else {
-                                            // no
-                                            questionContainer.visibility = View.GONE
-                                            model.view_hide_is=true
-
-                                        }
-                                    }
-
-                                }
 
                                 49 -> {
                                     // radio button
@@ -244,6 +228,24 @@ object ConditionalQuestion{
 
                                 }
 
+                                72 -> {
+                                    // radio button
+                                    c.runOnUiThread {
+                                        if (result.answer[0].is_selected) {
+                                            // yes
+                                            questionContainer.visibility = View.VISIBLE
+                                            model.view_hide_is=false
+
+                                        } else {
+                                            // no
+                                            questionContainer.visibility = View.GONE
+                                            model.view_hide_is=true
+
+                                        }
+                                    }
+
+                                }
+
                                 59 -> {
                                     // radio button
                                     c.runOnUiThread {
@@ -261,6 +263,8 @@ object ConditionalQuestion{
                                     }
 
                                 }
+
+
 
                                 74 -> {
                                     // radio button
@@ -305,23 +309,51 @@ object ConditionalQuestion{
                                     // radio button
 
                                     c.runOnUiThread {
-                                        if (result.answer[0].is_selected) {
-                                            // yes
-                                            questionContainer.visibility = View.VISIBLE
-                                            model.view_hide_is=false
 
-                                        } else {
-                                            // no
-                                            questionContainer.visibility = View.GONE
-                                            model.view_hide_is=true
+                                        Log.e("tag","runOnUiThread -76- ")
+
+
+                                            if (result.answer[0].is_selected) {
+                                                // yes
+                                                questionContainer.visibility = View.VISIBLE
+                                                model.view_hide_is=false
+
+                                            } else {
+                                                // no
+                                                questionContainer.visibility = View.GONE
+                                                model.view_hide_is=true
+
+                                            }
+
+                                        // this is jugad condition because without double notify, adapter not notify Gone/Visible
+
+                                        if(HostActivity.oneMore_notify){
+
+                                            HostActivity.oneMore_notify = false
+
+                                        }else{
+
+                                            HostActivity.oneMore_notify = true
+
+                                            when (sectionwise) {
+                                                is SectionWise -> {
+                                                    sectionwise.mAdapter.notifyDataSetChanged()
+                                                }
+                                                is SubSectionWise -> {
+
+                                                    sectionwise.mAdapter.notifyDataSetChanged()
+
+                                                }
+                                            }
+
 
                                         }
+
+
+
                                     }
 
                                 }
-
-
-
 
 
                             }
@@ -348,7 +380,7 @@ object ConditionalQuestion{
                     }
 
 
-                    break
+                    //break
 
                 }else{
 

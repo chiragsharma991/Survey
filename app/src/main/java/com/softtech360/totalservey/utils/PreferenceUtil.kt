@@ -151,6 +151,7 @@ object PreferenceUtil {
     val PASSWORD = "password"
     val ISLOGIN = "islogin"
     val INITIAL_TIME = "initial_time"
+    val STATUSOFAGE = "statusofAge"
     val UPDATE_VERSION_CODE = "update_version_code"
 
 }

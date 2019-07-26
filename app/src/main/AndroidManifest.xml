@@ -6,6 +6,8 @@
     <uses-permission android:name="android.permission.ACCESS_NETWORK_STATE" />
     <uses-permission android:name="android.permission.ACCESS_COARSE_LOCATION" />
     <uses-permission android:name="android.permission.ACCESS_FINE_LOCATION" />
+    <uses-permission android:name="android.permission.WAKE_LOCK" />
+
 
     <application
         android:name=".utils.SurveyApp"
@@ -31,7 +33,7 @@
             android:configChanges="keyboardHidden|orientation|screenSize"
             android:screenOrientation="portrait"
             android:theme="@style/AppTheme.NoActionBar"
-            android:windowSoftInputMode="stateHidden|adjustPan"
+            android:windowSoftInputMode="stateHidden"
             >
         </activity>
 
@@ -39,6 +41,7 @@
             android:name=".activity.HostActivity"
             android:configChanges="keyboardHidden|orientation|screenSize"
             android:screenOrientation="portrait"
+            android:windowSoftInputMode="stateHidden"
             android:theme="@style/AppTheme.NoActionBar"></activity>
         <activity
             android:name=".activity.NewUser"
@@ -60,6 +63,14 @@
             android:windowSoftInputMode="stateHidden|adjustPan"
             android:theme="@style/AppTheme.NoActionBar">
         </activity>
+
+
+
+        <!-- registering the receiver -->
+        <receiver
+            android:name=".utils.MyAlarm"
+            android:enabled="true"
+            android:exported="true" />
 
     </application>
 

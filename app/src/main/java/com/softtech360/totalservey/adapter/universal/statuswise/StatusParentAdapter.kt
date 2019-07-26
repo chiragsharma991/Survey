@@ -12,7 +12,9 @@ import android.text.SpannableString
 import android.text.SpannableStringBuilder
 import android.util.Log
 import android.view.View
+import android.view.inputmethod.InputMethodManager
 import android.widget.LinearLayout
+import androidx.core.content.ContextCompat.getSystemService
 import com.softtech360.totalservey.R
 import com.softtech360.totalservey.activity.HostActivity
 import com.softtech360.totalservey.databinding.RowStatuswisePBinding
@@ -78,11 +80,8 @@ class StatusParentAdapter<T>(val c: Context, val list: ArrayList<SectionWise.Sec
 
 
     override fun onBindViewHolder(holder: RecyclerView.ViewHolder, position: Int) {
+
         //ArrayList<Answers>
-
-
-
-
 
         if (holder is EditTextViewHolder) {
 
@@ -177,7 +176,13 @@ class StatusParentAdapter<T>(val c: Context, val list: ArrayList<SectionWise.Sec
 
 
 
+
+
+
+
+
         } else if (holder is CheckBoxViewHolder) {
+
 
             val builder = SpannableStringBuilder()
             var span1 = ""

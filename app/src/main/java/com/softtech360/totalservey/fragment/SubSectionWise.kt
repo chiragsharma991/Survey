@@ -160,7 +160,7 @@ class SubSectionWise : BaseFragment(), OnBackPressedListener {
 
     private fun refresh() {
 
-        mAdapter = StatusParentAdapter(context!!, list!!, this, user_type!!,connectedHeader)
+        mAdapter = StatusParentAdapter(context!!, list!!, this@SubSectionWise, user_type!!,connectedHeader)
         recyclerview_subsection.layoutManager = LinearLayoutManager(getActivityBase())
        (recyclerview_subsection.getItemAnimator() as SimpleItemAnimator).setSupportsChangeAnimations(false)
         recyclerview_subsection.adapter = mAdapter
@@ -199,8 +199,8 @@ class SubSectionWise : BaseFragment(), OnBackPressedListener {
 //         TYPE_EDITNUM = 2
 //         TYPE_RADIO = 3
 //         TYPE_CHECK = 4
-//         TYPE_OPTIONAL = 5
-      //  return  true
+//           TYPE_OPTIONAL = 5
+//        return  true
         error_contmsg = ""
 
         if (list == null) return false
@@ -441,7 +441,7 @@ class SubSectionWise : BaseFragment(), OnBackPressedListener {
                 // default sectionid = 1 , total section = 7
                 if (sectionId!! < totalsection) {
 
-                    if (sectionId!! == 3 && HostActivity.statusofAge[user_type]!! <= 14) {
+                    if (sectionId!! == 3 && HostActivity.statusofAge!![user_type]!! <= 14) {
 
                         // if age is like this then we bypass one screen.
 

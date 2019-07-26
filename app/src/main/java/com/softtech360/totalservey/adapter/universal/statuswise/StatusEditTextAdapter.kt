@@ -13,6 +13,7 @@ import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
 import android.view.WindowManager
+import android.view.inputmethod.InputMethodManager
 import com.softtech360.totalservey.R
 import com.softtech360.totalservey.databinding.RowEdittextBinding
 import com.softtech360.totalservey.fragment.SectionWise
@@ -54,31 +55,29 @@ class StatusEditTextAdapter <T> (val c: Context, val list: ArrayList<SectionWise
            // holder.binding.edttxt.clearFocus()
             holder.binding.edttxt.isEnabled = if(list[parentPosition].question_id == 6) false else true
 
+
+            val inputMethodManager_ = c.getSystemService(Context.INPUT_METHOD_SERVICE) as InputMethodManager
+            inputMethodManager_.hideSoftInputFromWindow(holder.binding.edttxt.windowToken,0)
+
+
+            holder.binding.edttxt.setFocusableInTouchMode(false)
+
+
+
             holder.binding.edttxt.setOnClickListener(View.OnClickListener {
 
-                var layoutManager : RecyclerView.LayoutManager? = null
-                var currentActivity : FragmentActivity? = null
+                /*     if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.LOLLIPOP) {
+                       holder.binding.edttxt.showSoftInputOnFocus = true
+                   }*/
 
-                when (sectionwise) {
-                    is SectionWise -> {
-                        layoutManager = sectionwise.recyclerview_section.getLayoutManager() as LinearLayoutManager
-                        currentActivity = (sectionwise as SectionWise).activity!!
-                    }
-                    is SubSectionWise -> {
-                        layoutManager = sectionwise.recyclerview_subsection.getLayoutManager() as LinearLayoutManager
-                        currentActivity = (sectionwise as SubSectionWise).activity!!
-
-                    }
-                }
-
-                // you may want to play with the offset parameter
-               // layoutManager!!.scrollToPosition(position)
                 holder.binding.edttxt.setFocusableInTouchMode(true)
-                holder.binding.edttxt.post({
-                    holder.binding.edttxt.requestFocus()
-                    //Show soft-keyboard:
-                    currentActivity!!.getWindow().setSoftInputMode(WindowManager.LayoutParams.SOFT_INPUT_STATE_ALWAYS_VISIBLE)
-                })
+
+                holder.binding.edttxt.requestFocus()
+
+
+                val inputMethodManager = c.getSystemService(Context.INPUT_METHOD_SERVICE) as InputMethodManager
+                inputMethodManager.showSoftInput(holder.binding.edttxt, InputMethodManager.SHOW_IMPLICIT)
+
             })
 
         }
@@ -156,7 +155,7 @@ class StatusEditTextAdapter <T> (val c: Context, val list: ArrayList<SectionWise
                     edit.isFocusableInTouchMode =false
                     edit.post {
                         //hide keyboard :
-                        currentActivity!!.getWindow().setSoftInputMode(WindowManager.LayoutParams.SOFT_INPUT_STATE_ALWAYS_HIDDEN);
+                       // currentActivity!!.getWindow().setSoftInputMode(WindowManager.LayoutParams.SOFT_INPUT_STATE_ALWAYS_HIDDEN);
                     }
 
 
