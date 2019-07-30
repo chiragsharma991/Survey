@@ -2,6 +2,7 @@ package com.softtech360.totalservey.adapter.universal.statuswise
 
 import android.content.Context
 import android.os.Build
+import android.os.Handler
 import androidx.databinding.DataBindingUtil
 import androidx.fragment.app.FragmentActivity
 import androidx.core.content.ContextCompat.getSystemService
@@ -61,9 +62,6 @@ class StatusEditNumAdapter <T> (val c: Context, val list: ArrayList<SectionWise.
             holder.binding.edttxt.setText(answerlist!![position].is_values)
 
 
-            val inputMethodManager_ = c.getSystemService(Context.INPUT_METHOD_SERVICE) as InputMethodManager
-            inputMethodManager_.hideSoftInputFromWindow(holder.binding.edttxt.windowToken,0)
-
 
             holder.binding.edttxt.setFocusableInTouchMode(false)
 
@@ -86,6 +84,15 @@ class StatusEditNumAdapter <T> (val c: Context, val list: ArrayList<SectionWise.
 
 
             })
+
+
+            Handler().postDelayed({
+
+                val inputMethodManager_ = c.getSystemService(Context.INPUT_METHOD_SERVICE) as InputMethodManager
+                inputMethodManager_.hideSoftInputFromWindow(holder.binding.edttxt.windowToken,0)
+
+            },500)
+
 
 
         }

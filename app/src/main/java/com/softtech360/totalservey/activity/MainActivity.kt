@@ -829,7 +829,8 @@ class MainActivity : BaseActivity(), AnkoLogger, PopupMenu.OnMenuItemClickListen
                                     question_id = question.question_id,
                                     question_type = question.question_type,
                                     question = question.question,
-                                    answer = Gson().toJson(getAnswerList(question)))
+                                    answer = Gson().toJson(getAnswerList(question))
+                            )
                     )
 
 
@@ -850,7 +851,6 @@ class MainActivity : BaseActivity(), AnkoLogger, PopupMenu.OnMenuItemClickListen
 
             println("Flip table question Table =\n ${FlipTableConverters.fromIterable(databaseclient!!.questiondao().all, Question::class.java)}")
             refreshlist()
-
 
         }
 

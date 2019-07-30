@@ -1,6 +1,7 @@
 package com.softtech360.totalservey.adapter.universal.statuswise
 
 import android.content.Context
+import android.os.Handler
 import androidx.databinding.DataBindingUtil
 import androidx.fragment.app.FragmentActivity
 import androidx.appcompat.widget.AppCompatEditText
@@ -56,10 +57,6 @@ class StatusEditTextAdapter <T> (val c: Context, val list: ArrayList<SectionWise
             holder.binding.edttxt.isEnabled = if(list[parentPosition].question_id == 6) false else true
 
 
-            val inputMethodManager_ = c.getSystemService(Context.INPUT_METHOD_SERVICE) as InputMethodManager
-            inputMethodManager_.hideSoftInputFromWindow(holder.binding.edttxt.windowToken,0)
-
-
             holder.binding.edttxt.setFocusableInTouchMode(false)
 
 
@@ -79,6 +76,16 @@ class StatusEditTextAdapter <T> (val c: Context, val list: ArrayList<SectionWise
                 inputMethodManager.showSoftInput(holder.binding.edttxt, InputMethodManager.SHOW_IMPLICIT)
 
             })
+
+
+            Handler().postDelayed({
+
+                val inputMethodManager_ = c.getSystemService(Context.INPUT_METHOD_SERVICE) as InputMethodManager
+                inputMethodManager_.hideSoftInputFromWindow(holder.binding.edttxt.windowToken,0)
+
+            },500)
+
+
 
         }
     }

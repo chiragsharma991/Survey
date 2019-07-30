@@ -68,6 +68,9 @@ class StatusOptionalAdapter <T> (val c: Context, val list: ArrayList<SectionWise
 
                 answerlist!![position].is_selected=true
 
+                if(list[parentPosition].question_id == 73){
+                    HostActivity.oneMore_notify = true
+                }
 
                 when (sectionwise) {
                     is SectionWise -> {

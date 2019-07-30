@@ -4,6 +4,9 @@ import androidx.sqlite.db.SupportSQLiteQuery
 import androidx.room.*
 import com.softtech360.totalservey.room.entity.Question
 import androidx.room.RawQuery
+import com.softtech360.totalservey.activity.Login.User
+
+
 
 
 
@@ -32,6 +35,12 @@ interface QuestionDao {
 
     @RawQuery
     fun clearPrimaryKey(query: SupportSQLiteQuery): Int  //We can return int status like it used to return with database.delete()
+
+
+ /*   @Query("SELECT * FROM User WHERE " +
+            "addr_home_lat BETWEEN :lat1 AND :lat2" +
+            " AND addr_home_lng BETWEEN :lng1 AND :lng2")
+    fun findInRange(lat1: Long, lat2: Long, lng1: Long, lng2: Long): List<User>*/
 
 
 }

@@ -310,7 +310,6 @@ object ConditionalQuestion{
 
                                     c.runOnUiThread {
 
-                                        Log.e("tag","runOnUiThread -76- ")
 
 
                                             if (result.answer[0].is_selected) {
@@ -326,12 +325,25 @@ object ConditionalQuestion{
                                             }
 
                                         // this is jugad condition because without double notify, adapter not notify Gone/Visible
+                                        //Log.e("tag","runOnUiThread -76- "+HostActivity.oneMore_notify)
+
 
                                         if(HostActivity.oneMore_notify){
 
                                             HostActivity.oneMore_notify = false
 
-                                        }else{
+                                            when (sectionwise) {
+                                                is SectionWise -> {
+                                                    sectionwise.mAdapter.notifyDataSetChanged()
+                                                }
+                                                is SubSectionWise -> {
+
+                                                    sectionwise.mAdapter.notifyDataSetChanged()
+
+                                                }
+                                            }
+
+                                        }/*else{
 
                                             HostActivity.oneMore_notify = true
 
@@ -347,7 +359,7 @@ object ConditionalQuestion{
                                             }
 
 
-                                        }
+                                        }*/
 
 
 

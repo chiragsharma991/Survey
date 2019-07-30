@@ -1,9 +1,6 @@
 package com.softtech360.totalservey.room.entity
 
-import androidx.room.ColumnInfo
-import androidx.room.Entity
-import androidx.room.Index
-import androidx.room.PrimaryKey
+import androidx.room.*
 import org.jetbrains.annotations.NotNull
 import java.io.Serializable
 
@@ -21,6 +18,10 @@ data class Question(
         @ColumnInfo(name = "question_type") var question_type: Int, // que type -> option type muliple/single
         @ColumnInfo(name = "question") var question: String = "", // question in hindi
         @ColumnInfo(name = "answer") var answer: String ="" // answer : answer
+        //@Embedded(prefix = "test") var test_answer: Test? =null // answer : answer
 
 ) : Serializable
 
+
+/*
+data class Test(@ColumnInfo(name = "name") val name : String ,@ColumnInfo(name = "password") val password : String) : Serializable*/
