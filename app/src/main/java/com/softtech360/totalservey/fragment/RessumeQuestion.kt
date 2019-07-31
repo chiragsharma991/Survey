@@ -2,6 +2,7 @@ package com.softtech360.totalservey.fragment
 
 import android.util.Log
 import android.widget.Toast
+import androidx.core.content.ContextCompat
 import com.google.gson.Gson
 import com.google.gson.reflect.TypeToken
 import com.softtech360.totalservey.R
@@ -11,6 +12,7 @@ import com.softtech360.totalservey.room.database.AppDatabase
 import com.softtech360.totalservey.room.entity.Answer
 import com.softtech360.totalservey.room.entity.Pwd
 import com.softtech360.totalservey.room.entity.Question
+import com.softtech360.totalservey.utils.DialogUtils
 import com.softtech360.totalservey.utils.PreferenceUtil
 import org.jetbrains.anko.runOnUiThread
 import java.util.logging.Handler
@@ -130,7 +132,7 @@ abstract class RessumeQuestion : BaseFragment() {
     protected fun makeSubEditQuestion(user_type: Int, databaseclient: AppDatabase, sectionId: Int, p_section_id: Int) {
 
         thread {
-
+            loge("tag","makeSubEditQuestion--"+user_type)
             // default user type = 0 , p section = 1, section =1  And we start from user type = 1 , p section = 1, section =2
                val totalsection = databaseclient.pwddao().getlastSectionid(form_id = PreferenceUtil.getInt(PreferenceUtil.FORM_ID,0),p_section_id =p_section_id)
 
@@ -166,19 +168,24 @@ abstract class RessumeQuestion : BaseFragment() {
 
                         var connectedHeader=""
                         val pwd_list = databaseclient.pwddao().getQuestionbyFromSecId(user_type = user_type + 1, form_id = PreferenceUtil.getInt(PreferenceUtil.FORM_ID, 0),section_id = 2 )
+
+
                         if(pwd_list.size > 0){
                             val type = object : TypeToken<ArrayList<Answers>>() {}.type
                             val answer : ArrayList<Answers>  = Gson().fromJson(pwd_list[0].answer, type)
                             connectedHeader=answer[0].is_values.trim()
                         }
 
+
+
                         context!!.runOnUiThread {
+
 
                             if(connectedHeader.length > 0){
                                 // if you did not enter pwd name then not go next
 
                                 if(sectionId == 1 && (user_type + 1) == 1){
-                                    loge("tag","if adddisableuser---sectionId == 1 "+user_type)
+                                    loge("tag","if sectionId == 1 "+user_type)
 
                                     // add disable screen if you resume
                                     val adddisableuser= AddDisableUser.newInstance(0, 1)
@@ -195,6 +202,7 @@ abstract class RessumeQuestion : BaseFragment() {
 
 
                                 }else{
+                                    loge("tag","else sectionId == 1 "+user_type)
 
                                     val fragment = SubSectionWise.newInstance(parsinglist, user_type + 1, parsinglist[0].section_name,sectionId + 1,p_section_id,if(connectedHeader.trim().length > 0) connectedHeader.substring(0, 1).toUpperCase() + connectedHeader.substring(1) else "")
                                     addFragment(R.id.seccontainer, fragment, SubSectionWise.TAG, false)
@@ -209,25 +217,47 @@ abstract class RessumeQuestion : BaseFragment() {
                             }else{
 
                                 if(sectionId == 1 && (user_type + 1) == 1){
-                                    loge("tag","else adddisableuser---sectionId == 1 "+user_type)
+                                    loge("tag","if sectionId == 1 with connectedHeader = 0 "+user_type)
 
                                     // add disable screen if you resume
                                     val adddisableuser= AddDisableUser.newInstance(0, 1)
                                     addFragment(R.id.seccontainer, adddisableuser, AddDisableUser.TAG, false)
+
+                                }else{
+                                    // if any field is empty on disable screen: pop other fragment
+                                    // close progress dialog
+                                    // show alert
+
+
+                                    for (i in 0 until childFragmentManager.backStackEntryCount - 1) {
+                                        childFragmentManager.popBackStack()
+                                    }
+
+                                    DialogUtils.openDialog(context = context!!, btnNegative = "", btnPositive = getString(R.string.ok), color = ContextCompat.getColor(context!!, R.color.theme_color), msg = "Please fill the all details first", title = "", onDialogClickListener = object : DialogUtils.OnDialogClickListener {
+                                        override fun onPositiveButtonClick(position: Int) {
+                                        }
+
+                                        override fun onNegativeButtonClick() {
+                                        }
+                                    })
+
+
                                 }
+
+                                showProgressDialog()
                             }
 
 
                         }
 
                     }else{
-                        // no sub question found
+                        // Add +1 question more
 
                      /*   context!!.runOnUiThread {
                             showProgressDialog()
 
                         }*/
-                        Log.e("sectionId <= totalsec",""+sectionId+" "+totalsection)
+                        Log.e("tag"," Add +1 question more"+sectionId+" "+totalsection)
 
 
                         if(pwdList.size > 0 ){
@@ -272,7 +302,7 @@ abstract class RessumeQuestion : BaseFragment() {
                                 if(connectedHeader.length > 0){
                                     // if you did not enter pwd name then not go next
                                     if(sectionId == 1 && (user_type + 1) == 1 ){
-                                        loge("tag","IF No adddisableuser---sectionId == 1 "+user_type)
+                                        loge("tag","IF Add +1  sectionId == 1 "+user_type)
 
 
                                         // add disable screen if you resume
@@ -300,11 +330,28 @@ abstract class RessumeQuestion : BaseFragment() {
                                 else{
 
                                     if(sectionId == 1 && (user_type + 1) == 1 ){
-                                        loge("tag","else No adddisableuser---sectionId == 1 "+user_type)
+                                        loge("tag","else Add +1  connectedHeader = 0 "+user_type)
 
                                         // add disable screen if you resume
                                         val adddisableuser= AddDisableUser.newInstance(0, 1)
                                         addFragment(R.id.seccontainer, adddisableuser, AddDisableUser.TAG, false)
+                                    }
+                                    else{
+                                        // if any field is empty on disable screen: pop other fragment
+                                        // close progress dialog
+                                        // show alert
+
+                                        for (i in 0 until childFragmentManager.backStackEntryCount - 1) {
+                                            childFragmentManager.popBackStack()
+                                        }
+                                        DialogUtils.openDialog(context = context!!, btnNegative = "", btnPositive = getString(R.string.ok), color = ContextCompat.getColor(context!!, R.color.theme_color), msg = "Please fill the all details first", title = "", onDialogClickListener = object : DialogUtils.OnDialogClickListener {
+                                            override fun onPositiveButtonClick(position: Int) {
+                                            }
+
+                                            override fun onNegativeButtonClick() {
+                                            }
+                                        })
+
                                     }
                                 }
 

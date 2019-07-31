@@ -134,7 +134,7 @@ class AddDisableUser : BaseFragment(), OnBackPressedListener {
                     for (j in 0.until(answer.size)) {
                         answerlist.add(SectionWise.SectionWiseAnswerModel(answer_id = answer[j].answer_id, answer = answer[j].answer, question_id = answer[j].question_id, is_selected = answer[j].is_selected, is_values = answer[j].is_values))
                     }
-                    list!!.add(SectionWise.SectionWiseModel(section_id = question[i].section_id, section_name = question[i].section_name, question = question[i].question, question_id = question[i].question_id, question_type = question[i].question_type, answer = answerlist,user_type = user_type,is_pwd =question[i].is_pwd ))
+                    list!!.add(SectionWise.SectionWiseModel(section_id = question[i].section_id, section_name = question[i].section_name, question = question[i].question, question_id = question[i].question_id, question_type = question[i].question_type,is_saved =question[i].is_saved!!,  answer = answerlist,user_type = user_type,is_pwd =question[i].is_pwd ))
 
                     // answerlist.clear()
 
@@ -151,7 +151,7 @@ class AddDisableUser : BaseFragment(), OnBackPressedListener {
 
             for (value in list!!){
                 if(value.question_id == 6){
-                    addDisableuserList!!.add(SectionWise.SectionWiseModel(section_name = value.section_name,question_id = value.question_id,section_id = value.section_id,question =value.question,question_type = value.question_type,answer = value.answer,user_type = value.user_type,is_pwd = value.is_pwd))
+                    addDisableuserList!!.add(SectionWise.SectionWiseModel(section_name = value.section_name,question_id = value.question_id,section_id = value.section_id,question =value.question,question_type = value.question_type,is_saved = value.is_saved ,answer = value.answer,user_type = value.user_type,is_pwd = value.is_pwd))
                 }
 
             }
@@ -201,8 +201,10 @@ class AddDisableUser : BaseFragment(), OnBackPressedListener {
 
                 for (value in addDisableuserList!!){
 
+                    loge("tag","value.is_saved---"+value.is_saved)
+
                     databaseclient!!.pwddao().update(form_id = PreferenceUtil.getInt(PreferenceUtil.FORM_ID,0),
-                            user_type = value.user_type , answer = Gson().toJson(value.answer) ,question_id = value.question_id,is_saved = false)
+                            user_type = value.user_type , answer = Gson().toJson(value.answer) ,question_id = value.question_id,is_saved = value.is_saved)
                 }
 
                 context!!.runOnUiThread {

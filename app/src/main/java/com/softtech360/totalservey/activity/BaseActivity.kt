@@ -175,7 +175,7 @@ abstract class BaseActivity : AppCompatActivity() {
                 //     loge(TAG,"updateEntries -- "+dob.text!!.trim().toString()+" "+state_value+" "+district_value+" "+section_value+" "+village_council_value+" "+village.text!!.trim().toString()+" "+colony.text!!.trim().toString())
 
                 databaseclient_?.let {
-                    loge("tag","update status")
+
                     it.statusdao().updateLocation(
                             form_id = PreferenceUtil.getInt(PreferenceUtil.FORM_ID,0),
                             latitude = location.getLatitude().toString(),

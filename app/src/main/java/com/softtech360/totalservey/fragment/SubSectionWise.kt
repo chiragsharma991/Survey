@@ -200,7 +200,7 @@ class SubSectionWise : BaseFragment(), OnBackPressedListener {
 //         TYPE_RADIO = 3
 //         TYPE_CHECK = 4
 //           TYPE_OPTIONAL = 5
-      //  return  true
+        //return  true
         error_contmsg = ""
 
         if (list == null) return false
@@ -431,7 +431,7 @@ class SubSectionWise : BaseFragment(), OnBackPressedListener {
 
             for (value in list) {
                 databaseclient!!.pwddao().update(form_id = PreferenceUtil.getInt(PreferenceUtil.FORM_ID, 0),
-                        user_type = user_type!!, answer = Gson().toJson(value.answer), question_id = value.question_id, is_saved = true)
+                        user_type = user_type!!, answer = Gson().toJson(value.answer), question_id = value.question_id, is_saved = true )
             }
 
             val totalsection = databaseclient!!.pwddao().getlastSectionid(form_id = PreferenceUtil.getInt(PreferenceUtil.FORM_ID, 0), p_section_id = p_sectionId!!)

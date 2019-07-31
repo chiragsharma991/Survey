@@ -437,8 +437,29 @@ class SectionWise : RessumeQuestion(), OnBackPressedListener {
                     }
 
                     context!!.runOnUiThread {
-                        val fragment = SubSectionWise.newInstance(parsinglist!!, user_type + 1, parsinglist!![0].section_name, sectionId_ + 1, sectionId!!,if(connectedHeader.trim().length > 0)  connectedHeader.substring(0, 1).toUpperCase() + connectedHeader.substring(1) else "")
-                        addFragment(R.id.seccontainer, fragment, SubSectionWise.TAG, false)
+
+                        if(connectedHeader.length > 0){
+                            val fragment = SubSectionWise.newInstance(parsinglist!!, user_type + 1, parsinglist!![0].section_name, sectionId_ + 1, sectionId!!,if(connectedHeader.trim().length > 0)  connectedHeader.substring(0, 1).toUpperCase() + connectedHeader.substring(1) else "")
+                            addFragment(R.id.seccontainer, fragment, SubSectionWise.TAG, false)
+                        }
+                        else{
+                            // if any field is empty on disable screen: pop other fragment
+                            // close progress dialog
+                            // show alert
+                            for (i in 0 until childFragmentManager.backStackEntryCount - 1) {
+                                childFragmentManager.popBackStack()
+                            }
+
+                            DialogUtils.openDialog(context = context!!, btnNegative = "", btnPositive = getString(R.string.ok), color = ContextCompat.getColor(context!!, R.color.theme_color), msg = "Please fill the all details first", title = "", onDialogClickListener = object : DialogUtils.OnDialogClickListener {
+                                override fun onPositiveButtonClick(position: Int) {
+                                }
+
+                                override fun onNegativeButtonClick() {
+                                }
+                            })
+
+                        }
+
                     }
 
                 } else {
@@ -506,6 +527,7 @@ class SectionWise : RessumeQuestion(), OnBackPressedListener {
             val user_type: Int = 0,
             var view_hide_is: Boolean = false,
             var is_any_error: Boolean = false,
+            var is_saved: Boolean = false,
             val answer: ArrayList<SectionWiseAnswerModel>
 
     ) : Serializable
@@ -528,7 +550,7 @@ class SectionWise : RessumeQuestion(), OnBackPressedListener {
 //         TYPE_RADIO = 3
 //         TYPE_CHECK = 4
 //         TYPE_OPTIONAL = 5
-      //  return true
+        //return true
         error_contmsg = ""
         if (list == null) return false
 
