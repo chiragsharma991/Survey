@@ -81,6 +81,13 @@ class MainActivity : BaseActivity(), AnkoLogger, PopupMenu.OnMenuItemClickListen
 
     }
 
+    override fun onNewIntent(intent: Intent?) {
+        loge(MainActivity.TAG, "onNewIntent---")
+
+        super.onNewIntent(intent)
+        setIntent(intent)
+    }
+
     var count: Int = 0
     var version_name : String =""
     val myclickhandler: MyClickHandler = MyClickHandler(this)

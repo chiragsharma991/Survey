@@ -29,6 +29,9 @@ interface AnswerDao {
     @Query("DELETE FROM Answer WHERE form_id IN (:form_id) ")
     fun deleteFormbyId (form_id: Int)
 
+    @Query("DELETE FROM Answer WHERE form_id LIKE :form_id AND section_id LIKE :section_id")
+    fun deleteEntry (form_id: Int , section_id : Int)
+
     @Query("DELETE FROM answer")
     fun drop()
 

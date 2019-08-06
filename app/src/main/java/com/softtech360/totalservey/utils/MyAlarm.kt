@@ -16,6 +16,7 @@ import androidx.core.app.NotificationCompat
 import androidx.core.content.ContextCompat
 import com.softtech360.totalservey.R
 import com.softtech360.totalservey.activity.Login
+import com.softtech360.totalservey.activity.MainActivity
 
 
 class MyAlarm : BroadcastReceiver() {
@@ -27,10 +28,10 @@ class MyAlarm : BroadcastReceiver() {
         Log.e("MyAlarm", "onReceive>>>>>>>>>>")
 
 
-        val resultIntent = Intent(context, Login::class.java).addFlags(Intent.FLAG_ACTIVITY_CLEAR_TOP)
+        val resultIntent = Intent(context, MainActivity::class.java)
         val resultPendingIntent = PendingIntent.getActivity(context,
                 0, resultIntent,
-                PendingIntent.FLAG_CANCEL_CURRENT)
+                PendingIntent.FLAG_ONE_SHOT)
 
         val icon1 = BitmapFactory.decodeResource(context.resources, R.mipmap.ic_launcher)
 

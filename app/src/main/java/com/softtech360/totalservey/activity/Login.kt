@@ -40,15 +40,13 @@ class Login : BaseActivity(), AnkoLogger {
         super.onCreate(savedInstanceState)
         binding = DataBindingUtil.setContentView(this, R.layout.login)
         initView(savedInstanceState)
-
-
     }
 
     val myclickhandler: MyClickHandler = MyClickHandler(this)
     private fun initView(savedInstanceState: Bundle?) {
 
         if (savedInstanceState == null) {
-            loge(MainActivity.TAG, "saveInstance Not NULL")
+            loge(Login.TAG, "saveInstance Not NULL")
             login_instance = this
             val email = PreferenceUtil.getString(PreferenceUtil.EMAIL,"")
 
@@ -70,11 +68,13 @@ class Login : BaseActivity(), AnkoLogger {
 
         } else {
 
-            logd(MainActivity.TAG, "saveInstance Not NULL")
+            loge(Login.TAG, "saveInstance Not NULL")
 
         }
 
     }
+
+
 
 
     private fun onstartLogin() {

@@ -82,8 +82,6 @@ class SectionWise : RessumeQuestion(), OnBackPressedListener {
             else
                 (parentFragment as QuestionAnswer).pop()
         }
-
-
     }
 
 
@@ -301,6 +299,7 @@ class SectionWise : RessumeQuestion(), OnBackPressedListener {
 
                     // pass the loop data in another pwd table.
                     val loopvalue = personCount - pwd_size
+
                     for (j in 0.until(loopvalue)) {
                         // add i > for one screen
 
@@ -325,10 +324,16 @@ class SectionWise : RessumeQuestion(), OnBackPressedListener {
                         }
                     }
 
+                    databaseclient!!.answerdao().deleteEntry(form_id = PreferenceUtil.getInt(PreferenceUtil.FORM_ID,0),section_id = 7)
+                    databaseclient!!.answerdao().deleteEntry(form_id = PreferenceUtil.getInt(PreferenceUtil.FORM_ID,0),section_id = 8)
+
                     /*   context!!.runOnUiThread {
 
                            addDisableUser(0)
                        }*/
+
+
+
 
 
                 } else if (personCount < pwd_size) {
