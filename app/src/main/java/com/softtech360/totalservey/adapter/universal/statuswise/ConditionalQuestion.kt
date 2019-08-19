@@ -49,6 +49,23 @@ object ConditionalQuestion{
                                     }
 
                                 }
+                                20 -> {
+                                    // radio button //
+                                    c.runOnUiThread {
+                                        if (result.answer[0].is_selected) {
+                                            // father- mother is selected so
+                                            questionContainer.visibility = View.GONE
+                                            model.view_hide_is=true
+
+
+                                        } else {
+                                            questionContainer.visibility = View.VISIBLE
+                                            model.view_hide_is=false
+
+                                        }
+                                    }
+
+                                }
 
                                 23 -> {
                                     // radio: की क्या मनोचिकित्सक से दवा चल र
@@ -159,6 +176,26 @@ object ConditionalQuestion{
 
                                 }
 
+                                41 -> {
+                                    // radio button :
+                                    c.runOnUiThread {
+
+                                        if (result.answer[0].is_selected) {
+                                            // yes
+                                            questionContainer.visibility = View.VISIBLE
+                                            model.view_hide_is=false
+
+                                        } else {
+                                            // no
+                                            questionContainer.visibility = View.GONE
+                                            model.view_hide_is=true
+
+                                        }
+
+                                    }
+
+                                }
+
                                 44 -> {
                                     // radio button
                                     c.runOnUiThread {
@@ -175,6 +212,24 @@ object ConditionalQuestion{
                                     }
 
                                 }
+
+                                45 -> {
+                                    // radio button
+                                    c.runOnUiThread {
+                                        if (result.answer[5].is_selected) {
+                                            // yes
+                                            questionContainer.visibility = View.GONE
+                                            model.view_hide_is=true
+
+                                        } else {
+                                            // no
+                                            questionContainer.visibility = View.VISIBLE
+                                            model.view_hide_is=false
+                                        }
+                                    }
+
+                                }
+
                                 47 -> {
                                     // radio button
                                     c.runOnUiThread {
