@@ -55,8 +55,8 @@ class Login : BaseActivity(), AnkoLogger {
                 finish()
             }else{
                 binding.onclick = myclickhandler
-                username.setText("User-d49b4281-NBJK")
-                password.setText("07c07c08")
+                //username.setText("User-d49b4281-NBJK")
+                //password.setText("07c07c08")
 
               //  username.setText("user-d49b4281-nbjk")
                // password.setText("07c07c08")

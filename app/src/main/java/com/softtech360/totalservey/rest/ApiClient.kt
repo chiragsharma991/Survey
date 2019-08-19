@@ -8,8 +8,8 @@ import java.util.concurrent.TimeUnit
 
 internal object ApiClient{
 
-    val BASE_URL = "http://192.168.1.20/survey/backend/web/index.php/api/"
-    //val BASE_URL = "https://nbjk.org/survey/backend/web/index.php/api/"
+    //val BASE_URL = "http://192.168.1.15/survey/backend/web/index.php/api/"
+    val BASE_URL = "https://nbjk.org/survey/backend/web/index.php/api/"
     //https://nbjk.org/survey/
 
 
