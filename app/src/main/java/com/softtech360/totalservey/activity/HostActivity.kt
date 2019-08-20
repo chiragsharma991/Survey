@@ -57,6 +57,7 @@ class HostActivity : BaseActivity(){
 
 
             conditionalQuestion.add(ConditionalModel(question_id=14,section_id =0,conditional_target=ConditionalTargetModel(target_question_id =13 ,target_section_id=2)))
+            conditionalQuestion.add(ConditionalModel(question_id=20,section_id =0,conditional_target=ConditionalTargetModel(target_question_id =19 ,target_section_id=2)))
             conditionalQuestion.add(ConditionalModel(question_id=23,section_id =0,conditional_target=ConditionalTargetModel(target_question_id =21 ,target_section_id=2)))
             conditionalQuestion.add(ConditionalModel(question_id=25,section_id =0,conditional_target=ConditionalTargetModel(target_question_id =24 ,target_section_id=3)))
             conditionalQuestion.add(ConditionalModel(question_id=26,section_id =0,conditional_target=ConditionalTargetModel(target_question_id =24 ,target_section_id=3)))
@@ -65,8 +66,10 @@ class HostActivity : BaseActivity(){
             conditionalQuestion.add(ConditionalModel(question_id=35,section_id =0,conditional_target=ConditionalTargetModel(target_question_id =32 ,target_section_id=3)))
             conditionalQuestion.add(ConditionalModel(question_id=33,section_id =0,conditional_target=ConditionalTargetModel(target_question_id =32 ,target_section_id=3)))
             conditionalQuestion.add(ConditionalModel(question_id=40,section_id =0,conditional_target=ConditionalTargetModel(target_question_id =20 ,target_section_id=2)))
+            conditionalQuestion.add(ConditionalModel(question_id=41,section_id =0,conditional_target=ConditionalTargetModel(target_question_id =40 ,target_section_id=3)))
 
             conditionalQuestion.add(ConditionalModel(question_id=44,section_id =0,conditional_target=ConditionalTargetModel(target_question_id =43 ,target_section_id=4)))
+            conditionalQuestion.add(ConditionalModel(question_id=45,section_id =0,conditional_target=ConditionalTargetModel(target_question_id =43 ,target_section_id=4)))
             conditionalQuestion.add(ConditionalModel(question_id=47,section_id =0,conditional_target=ConditionalTargetModel(target_question_id =46 ,target_section_id=4)))
             conditionalQuestion.add(ConditionalModel(question_id=49,section_id =0,conditional_target=ConditionalTargetModel(target_question_id =48 ,target_section_id=4)))
             conditionalQuestion.add(ConditionalModel(question_id=50,section_id =0,conditional_target=ConditionalTargetModel(target_question_id =48 ,target_section_id=4)))

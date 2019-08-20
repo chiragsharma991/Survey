@@ -261,23 +261,18 @@ class SubSectionWise : BaseFragment(), OnBackPressedListener {
                 // true if all are edit text have atleast one values
                 for (value in list) {
 
-                  /*  if (question_id == 7) {
+                    if (question_id == 7) {
                         // Adhar number (not mandatory but if present then check validation )
 
-                        if (value.is_values.trim().length <= 0) {
+                        if (value.is_values.trim().length >= 12 && value.is_values.trim().length <= 16) {
                             return true
                         } else {
-
-                            if (value.is_values.trim().length == 12) {
-                                return true
-                            } else {
-                                error_contmsg = error_contmsg + "\n\n- आधार नंबर should be 12 digit"
-                                return false
-                            }
-
+                            error_contmsg = error_contmsg + "\n\n- आधार नंबर should be Min 12 digits and Max 16 digits"
+                            return false
                         }
 
-                    }*/  if (question_id == 8) {
+                    }
+                    else if (question_id == 8) {
                         // mobile number
                         if (value.is_values.trim().length <= 0) {
                             return true
@@ -345,23 +340,18 @@ class SubSectionWise : BaseFragment(), OnBackPressedListener {
                 // true if all are edit text have atleast one values
                 for (value in list) {
 
-                /*    if (question_id == 7) {
+                    if (question_id == 7) {
                         // Adhar number (not mandatory but if present then check validation )
 
-                        if (value.is_values.trim().length <= 0) {
+                        if (value.is_values.trim().length >= 12 && value.is_values.trim().length <= 16) {
                             return true
                         } else {
-
-                            if (value.is_values.trim().length == 16) {
-                                return true
-                            } else {
-                             //   error_contmsg = error_contmsg + "\n\n- आधार नंबर should be 7 digit"
-                                return false
-                            }
-
+                          //  error_contmsg = error_contmsg + "\n\n- आधार नंबर should be Min 12 digits and Max 16 digits"
+                            return false
                         }
 
-                    }*/  if (question_id == 8) {
+
+                    } else if (question_id == 8) {
                         // mobile number
                         if (value.is_values.trim().length <= 0) {
                             return true
